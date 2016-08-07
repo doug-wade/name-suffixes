@@ -43,6 +43,7 @@
     "gulp-plumber": "^1.0.0",
     "isparta": "^3.0.3"
   },
+  "engines" : { "node" : ">=4.0.0" },
   "eslintConfig": {
     "extends": "xo-space/esnext",
     "env": {
