@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
-    "babel-eslint": "^4.1.6",
+    "babel-eslint": "^7.0.0",
     "chai": "^3.5.0",
     "del": "^2.0.2",
     "eslint-config-xo-space": "^0.7.0",
