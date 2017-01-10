@@ -6,7 +6,7 @@ const eslint = require('gulp-eslint');
 const excludeGitignore = require('gulp-exclude-gitignore');
 const mocha = require('gulp-mocha');
 const istanbul = require('gulp-istanbul');
-const nsp = require('gulp-nsp');
+const snyk = require('gulp-snyk');
 const plumber = require('gulp-plumber');
 const coveralls = require('gulp-coveralls');
 const babel = require('gulp-babel');
@@ -23,7 +23,9 @@ gulp.task('static', () => gulp.src('**/*.js')
     .pipe(eslint.format())
     .pipe(eslint.failAfterError()));
 
-gulp.task('nsp', cb => nsp({package: path.resolve('package.json')}, cb));
+gulp.task('protect', cb => snyk({command: 'protect'}, cb));
+
+gulp.task('audit-dependencies', cb => snyk({command: 'test'}, cb));
 
 gulp.task('pre-test', () => gulp.src('lib/**/*.js')
     .pipe(excludeGitignore())
@@ -61,5 +63,5 @@ gulp.task('babel', ['clean'], () => gulp.src('lib/**/*.js')
 
 gulp.task('clean', () => del('dist'));
 
-gulp.task('prepublish', ['nsp', 'babel']);
-gulp.task('default', ['static', 'test', 'coveralls']);
+gulp.task('prepublish', ['protect', 'babel']);
+gulp.task('default', ['static', 'test', 'coveralls', 'audit-dependencies']);
