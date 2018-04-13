@@ -33,15 +33,15 @@
     "eslint-config-xo-space": "^0.15.0",
     "eslint-plugin-babel": "^3.0.0",
     "gulp": "^3.9.0",
-    "gulp-babel": "^5.1.0",
+    "gulp-babel": "^6.1.2",
     "gulp-coveralls": "^0.1.0",
-    "gulp-eslint": "^1.0.0",
+    "gulp-eslint": "^3.0.1",
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-istanbul": "^1.1.0",
     "gulp-mocha": "^3.0.0",
-    "gulp-nsp": "^2.1.0",
+    "gulp-snyk": "^0.0.3",
     "gulp-plumber": "^1.0.0",
-    "isparta": "^3.0.3"
+    "isparta": "^4.0.0"
   },
   "engines": {
     "node": ">=4.0.0"
