@@ -4,7 +4,11 @@ import chai from 'chai';
 
 const expect = chai.expect;
 const mockSuffixes = [
-  {variants: ['Time Lord', 'T.L.'], canonical: 'T. L.', type: 'fictional'}
+  {
+    variants: ['Time Lord', 'T.L.'],
+    canonical: 'T. L.',
+    type: 'fictional'
+  }
 ];
 
 describe('canonize', () => {

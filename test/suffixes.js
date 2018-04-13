@@ -1,5 +1,5 @@
-import suffixes from '../lib/suffixes';
 import chai from 'chai';
+import suffixes from '../lib/suffixes';
 
 const expect = chai.expect;
 

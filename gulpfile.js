@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
@@ -14,7 +12,7 @@ const del = require('del');
 const isparta = require('isparta');
 
 // Initialize the babel transpiler so ES2015 files gets compiled
-// when they're loaded
+// When they're loaded
 require('babel-core/register');
 
 gulp.task('static', () => gulp.src('**/*.js')

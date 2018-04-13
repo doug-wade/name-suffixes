@@ -1,11 +1,13 @@
-/* eslint-disable no-unused-expressions */
-
-import isSuffix from '../lib/isSuffix';
 import chai from 'chai';
+import isSuffix from '../lib/isSuffix';
 
 const expect = chai.expect;
 const mockSuffixes = [
-  {variants: ['Time Lord', 'T.L.'], canonical: 'T. L.', type: 'fictional'}
+  {
+    variants: ['Time Lord', 'T.L.'],
+    canonical: 'T. L.',
+    type: 'fictional'
+  }
 ];
 
 describe('isSuffix', () => {
