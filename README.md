@@ -1,4 +1,6 @@
 # name-suffixes [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/doug-wade/name-suffixes.svg)](https://greenkeeper.io/)
 > Identify name suffixes
 
 For the most part, this is just the code version of the [Wikipedia page on name suffixes](https://en.wikipedia.org/wiki/Suffix_(name)).  Each suffix has three parts: a list of variants, which is a list of all of the versions of the same suffix that differ in more than punctation, whitespace, or capitalization; a canonical version, which is a standard way of identifying a single suffix, and a type, which is one of: generational, academic, professional or religious.
