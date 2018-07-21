@@ -16,29 +16,34 @@ const isparta = require('isparta');
 require('babel-core/register');
 
 gulp.task('static', () => gulp.src('**/*.js')
-    .pipe(excludeGitignore())
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError()));
+  .pipe(excludeGitignore())
+  .pipe(eslint())
+  .pipe(eslint.format())
+  .pipe(eslint.failAfterError()));
 
 gulp.task('protect', cb => snyk({command: 'protect'}, cb));
 
 gulp.task('audit-dependencies', cb => snyk({command: 'test'}, cb));
 
 gulp.task('pre-test', () => gulp.src('lib/**/*.js')
-    .pipe(excludeGitignore())
-    .pipe(istanbul({
-      includeUntested: true,
-      instrumenter: isparta.Instrumenter
-    }))
-    .pipe(istanbul.hookRequire()));
+  .pipe(excludeGitignore())
+  .pipe(istanbul({
+    includeUntested: true,
+    instrumenter: isparta.Instrumenter
+  }))
+  .pipe(istanbul.hookRequire()));
 
 gulp.task('test', ['pre-test'], cb => {
   let mochaErr;
 
   gulp.src('test/**/*.js')
     .pipe(plumber())
-    .pipe(mocha({reporter: 'spec'}))
+    .pipe(mocha({
+      reporter: 'spec',
+      compilers: [
+        'js:babel-register'
+      ]
+    }))
     .on('error', err => mochaErr = err)
     .pipe(istanbul.writeReports())
     .on('end', () => cb(mochaErr));
@@ -56,8 +61,8 @@ gulp.task('coveralls', ['test'], () => {
 });
 
 gulp.task('babel', ['clean'], () => gulp.src('lib/**/*.js')
-    .pipe(babel())
-    .pipe(gulp.dest('dist')));
+  .pipe(babel())
+  .pipe(gulp.dest('dist')));
 
 gulp.task('clean', () => del('dist'));
 
