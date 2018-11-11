@@ -3,7 +3,7 @@ import isSuffix from './isSuffix';
 import suffixes from './suffixes';
 
 export default {
-  canonize: candidate => canonize(suffixes, candidate),
-  isSuffix: candidate => isSuffix(suffixes, candidate),
+  canonize: (candidate: String) => canonize(suffixes, candidate),
+  isSuffix: (candidate: String) => isSuffix(suffixes, candidate),
   suffixes
 };
