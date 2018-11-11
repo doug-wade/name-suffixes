@@ -15,6 +15,8 @@ const isparta = require('isparta');
 // When they're loaded
 require('babel-core/register');
 
+gulp.task('clean', () => del('dist'));
+
 gulp.task('static', () => gulp.src('**/*.js')
   .pipe(excludeGitignore())
   .pipe(eslint())
@@ -33,7 +35,7 @@ gulp.task('pre-test', () => gulp.src('lib/**/*.js')
   }))
   .pipe(istanbul.hookRequire()));
 
-gulp.task('test', ['pre-test'], cb => {
+gulp.task('test', gulp.parallel(['pre-test']), cb => {
   let mochaErr;
 
   gulp.src('test/**/*.js')
@@ -51,7 +53,7 @@ gulp.task('test', ['pre-test'], cb => {
 
 gulp.task('watch', () => gulp.watch(['lib/**/*.js', 'test/**'], ['test']));
 
-gulp.task('coveralls', ['test'], () => {
+gulp.task('coveralls', gulp.parallel(['test']), () => {
   if (!process.env.CI) {
     return;
   }
@@ -60,11 +62,9 @@ gulp.task('coveralls', ['test'], () => {
     .pipe(coveralls());
 });
 
-gulp.task('babel', ['clean'], () => gulp.src('lib/**/*.js')
+gulp.task('babel', gulp.parallel(['clean']), () => gulp.src('lib/**/*.js')
   .pipe(babel())
   .pipe(gulp.dest('dist')));
 
-gulp.task('clean', () => del('dist'));
-
-gulp.task('prepublish', ['protect', 'babel']);
-gulp.task('default', ['static', 'test', 'coveralls', 'audit-dependencies']);
+gulp.task('prepublish', gulp.parallel(['protect', 'babel']));
+gulp.task('default', gulp.parallel(['static', 'test', 'coveralls', 'audit-dependencies']));
