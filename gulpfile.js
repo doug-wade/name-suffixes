@@ -4,7 +4,6 @@ const tslint = require("gulp-tslint");
 const excludeGitignore = require('gulp-exclude-gitignore');
 const mocha = require('gulp-mocha');
 const istanbul = require('gulp-istanbul');
-const snyk = require('gulp-snyk');
 const plumber = require('gulp-plumber');
 const coveralls = require('gulp-coveralls');
 const babel = require('gulp-babel');
@@ -30,10 +29,6 @@ gulp.task('static', () => gulp.src("./src/*.ts")
       formatter: "verbose"
   }))
   .pipe(tslint.report()));
-
-gulp.task('protect', cb => snyk({command: 'protect'}, cb));
-
-gulp.task('audit-dependencies', cb => snyk({command: 'test'}, cb));
 
 gulp.task('pre-test', () => gulp.src('lib/**/*.js')
   .pipe(excludeGitignore())
@@ -76,5 +71,5 @@ gulp.task('babel', ['clean'], () => gulp.src('lib/**/*.js')
 
 gulp.task('clean', () => del('dist'));
 
-gulp.task('prepublish', ['protect', 'typescript', 'babel']);
-gulp.task('default', ['static', 'test', 'coveralls', 'audit-dependencies']);
+gulp.task('prepublish', ['typescript', 'babel']);
+gulp.task('default', ['static', 'test', 'coveralls']);
