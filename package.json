@@ -34,7 +34,7 @@
     "del": "^4.0.0",
     "eslint-config-fixable": "^0.1.0",
     "eslint-plugin-babel": "^5.0.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-babel": "^7.0.1",
     "gulp-coveralls": "^0.1.0",
     "gulp-eslint": "^5.0.0",
